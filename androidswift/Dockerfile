@@ -7,12 +7,11 @@ RUN apt-get update && \
     apt-get install --yes \
         xvfb lib32z1 lib32stdc++6 build-essential \
         libcurl4-openssl-dev libglu1-mesa libxi-dev libxmu-dev \
-        libglu1-mesa-dev unzip wget lsof nano vim \
+        libglu1-mesa-dev unzip wget lsof nano vim sudo \
         openjdk-8-jdk
 
 ARG sdk_version=sdk-tools-linux-3859397.zip
 ARG android_home=/opt/android/sdk
-
 
 # node
 RUN curl -sL https://deb.nodesource.com/setup_8.x | bash - && \
@@ -35,11 +34,9 @@ RUN sdkmanager \
     "platform-tools" \
     "ndk-bundle" \
     "extras;google;google_play_services" \
-    "extras;android;m2repository" \
-    "extras;google;m2repository" \
     "build-tools;27.0.3" \
     "build-tools;28.0.3" \
-    "platforms;android-26"
+    "platforms;android-27"
 
 # publish on dockerhub
 # docker build -t flowkey/androidswift . && docker push flowkey/androidswift
