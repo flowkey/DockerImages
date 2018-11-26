@@ -6,12 +6,12 @@ ENV HOST_SWIFT_BIN_PATH /usr/bin
 RUN apt-get update && \
     apt-get install --yes \
         xvfb lib32z1 lib32stdc++6 build-essential \
-        libcurl4-openssl-dev libglu1-mesa libxi-dev libxmu-dev \
-        libglu1-mesa-dev unzip wget lsof nano vim sudo \
+        libcurl4-openssl-dev libglu1-mesa libxi-dev libxmu-dev libglu1-mesa-dev  \
+        unzip wget lsof nano vim sudo rubygems ruby-dev \
         openjdk-8-jdk
 
-ARG sdk_version=sdk-tools-linux-3859397.zip
-ARG android_home=/opt/android/sdk
+# fastlane
+RUN gem install fastlane -NV
 
 # node
 RUN curl -sL https://deb.nodesource.com/setup_8.x | bash - && \
@@ -20,6 +20,9 @@ RUN curl -sL https://deb.nodesource.com/setup_8.x | bash - && \
     node -v && npm -v
 
 # android
+ARG sdk_version=sdk-tools-linux-3859397.zip
+ARG android_home=/opt/android/sdk
+
 RUN mkdir -p ${android_home} && \
     curl --silent --show-error --location --fail --retry 3 --output /tmp/${sdk_version} https://dl.google.com/android/repository/${sdk_version} && \
     unzip -q /tmp/${sdk_version} -d ${android_home} && \
