@@ -16,7 +16,7 @@ RUN gem install fastlane -NV
 # node
 RUN curl -sL https://deb.nodesource.com/setup_8.x | bash - && \
     apt-get install -y nodejs && \
-    npm install -g npm@6.1.0 && \
+    npm install -g npm@6.x.x && \
     node -v && npm -v
 
 # android
