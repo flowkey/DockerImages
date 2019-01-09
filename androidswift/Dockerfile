@@ -20,6 +20,7 @@ RUN curl -sL https://deb.nodesource.com/setup_8.x | bash - && \
     node -v && npm -v
 
 # android
+ARG cmake_version=3.10.2.4988404
 ARG sdk_version=sdk-tools-linux-3859397.zip
 ARG android_home=/opt/android/sdk
 
@@ -39,7 +40,10 @@ RUN sdkmanager \
     "extras;google;google_play_services" \
     "build-tools;27.0.3" \
     "build-tools;28.0.3" \
-    "platforms;android-27"
+    "platforms;android-27" \
+    "cmake;${cmake_version}"
+
+ENV PATH=${ANDROID_HOME}/cmake/${cmake_version}/bin:$PATH
 
 # publish on dockerhub
 # docker build -t flowkey/androidswift . && docker push flowkey/androidswift
