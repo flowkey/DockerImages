@@ -41,6 +41,7 @@ RUN sdkmanager \
     "build-tools;27.0.3" \
     "build-tools;28.0.3" \
     "platforms;android-27" \
+    "platforms;android-28" \
     "cmake;${cmake_version}"
 
 ENV PATH=${ANDROID_HOME}/cmake/${cmake_version}/bin:$PATH
