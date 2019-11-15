@@ -38,13 +38,11 @@ RUN sdkmanager \
     "platform-tools" \
     "ndk-bundle" \
     "extras;google;google_play_services" \
-    "build-tools;27.0.3" \
     "build-tools;28.0.3" \
-    "platforms;android-27" \
     "platforms;android-28" \
     "cmake;${cmake_version}"
 
 ENV PATH=${ANDROID_HOME}/cmake/${cmake_version}/bin:$PATH
 
 # publish on dockerhub
-# docker build -t flowkey/androidswift . && docker push flowkey/androidswift
+# docker build -t flowkey/androidswift . && docker push flowkey/androidswift5
